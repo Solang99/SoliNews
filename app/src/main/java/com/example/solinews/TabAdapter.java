@@ -35,6 +35,8 @@ public class TabAdapter extends FragmentStateAdapter {
     }
 
 
+
+
     private void buildCategories(){
         categories = new ArrayList<>();
         FileInputStream is;
@@ -69,5 +71,6 @@ public class TabAdapter extends FragmentStateAdapter {
     public String getCategory(int position){
         return categories.get(position);
     }
+
 
 }

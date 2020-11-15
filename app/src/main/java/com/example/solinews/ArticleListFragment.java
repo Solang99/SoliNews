@@ -12,11 +12,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,31 +29,35 @@ public class ArticleListFragment extends Fragment {
     public static ArticleListFragment newInstance(String category) {
         ArticleListFragment fragment = new ArticleListFragment();
         mCategory=category;
+
         return fragment;
     }
+
+
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        title= new ArrayList<>();
+        subTitle= new ArrayList<>();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View rootView =inflater.inflate(R.layout.fragment_crime, container, false);
-        title= new ArrayList<>();
-        subTitle= new ArrayList<>();
+        View rootView =inflater.inflate(R.layout.fragment_article, container, false);
+
 
         // 1. get a reference to recyclerView
-        RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.recycle_crime);
+        RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.recycle_article);
 
         // 2. set layoutManger
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         readArticle();
         // 3. create an adapter
+        Log.d("cate", "onCreateView: " + title);
         RecyclerAdapter mAdapter = new RecyclerAdapter(title,subTitle);
         // 4. set adapter
         recyclerView.setAdapter(mAdapter);
@@ -69,6 +71,7 @@ public class ArticleListFragment extends Fragment {
 
         String path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS)
                 .toString()+"/"+mCategory;
+
         File directory = new File(path);
         File[] files = directory.listFiles();
 

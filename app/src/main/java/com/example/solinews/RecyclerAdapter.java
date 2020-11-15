@@ -1,6 +1,7 @@
 package com.example.solinews;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
+public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder>  {
 
     // Store a member variable for the contacts
     private List<String> mTitle;
@@ -25,14 +26,24 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     @Override
     public RecyclerAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
 
         // Inflate the custom layout
-        View contactView = inflater.inflate(R.layout.news_item, parent, false);
+        View view = inflater.inflate(R.layout.news_item, parent, false);
+
+        //Open expanded fragment on touch
+        view.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                Log.d("ciao", "onClick: ");
+                return true;
+            }
+        });
 
         // Return a new holder instance
-        ViewHolder viewHolder = new ViewHolder(contactView);
+        ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
     }
 
@@ -43,14 +54,14 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         String title = mTitle.get(position);
         String subTitle = mSubTitle.get(position);
 
-
-
         // Set item views based on your views and data model
         TextView titleView = holder.title;
         titleView.setText(title);
         TextView subTitleView = holder.subTitle;
         subTitleView.setText(subTitle);
     }
+
+
 
     // Returns the total count of items in the list
     @Override
@@ -78,5 +89,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             subTitle = (TextView) itemView.findViewById(R.id.news_subtitle);
         }
     }
+
+
+
 }
 
