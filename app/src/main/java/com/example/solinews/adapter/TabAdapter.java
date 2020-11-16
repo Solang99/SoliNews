@@ -1,4 +1,4 @@
-package com.example.solinews;
+package com.example.solinews.adapter;
 
 import android.os.Environment;
 
@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
+import com.example.solinews.ui.ArticleListFragment;
 import com.example.solinews.ui.news.NewsFragment;
 
 import java.io.BufferedReader;

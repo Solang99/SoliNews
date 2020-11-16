@@ -1,4 +1,4 @@
-package com.example.solinews;
+package com.example.solinews.ui;
 
 import android.os.Bundle;
 
@@ -11,6 +11,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.solinews.R;
+import com.example.solinews.adapter.RecyclerAdapter;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -41,6 +44,8 @@ public class ArticleListFragment extends Fragment {
         super.onCreate(savedInstanceState);
         title= new ArrayList<>();
         subTitle= new ArrayList<>();
+        readArticle();
+
     }
 
     @Override
@@ -55,7 +60,7 @@ public class ArticleListFragment extends Fragment {
 
         // 2. set layoutManger
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        readArticle();
+
         // 3. create an adapter
         Log.d("cate", "onCreateView: " + title);
         RecyclerAdapter mAdapter = new RecyclerAdapter(title,subTitle);

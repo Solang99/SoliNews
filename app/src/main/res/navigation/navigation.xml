@@ -8,15 +8,34 @@
         android:id="@+id/nav_news"
         android:name="com.example.solinews.ui.news.NewsFragment"
         android:label="@string/news"
-        tools:layout="@layout/fragment_news" />
+        tools:layout="@layout/fragment_news" >
+
+        <action
+            android:id="@+id/action_nav_news_to_extendedArticleFragment"
+            app:destination="@id/extendedArticleFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popUpTo="@id/nav_news" />
+    </fragment>
+
     <fragment
         android:id="@+id/nav_favorites"
         android:name="com.example.solinews.ui.favorites.FavoritesFragments"
         android:label="@string/favorites"
         tools:layout="@layout/fragment_favorites" />
+
     <fragment
-        android:id="@+id/mapsFragment"
-        android:name="com.example.solinews.MapsFragment"
-        android:label="fragment_maps"
-        tools:layout="@layout/fragment_maps" />
+        android:id="@+id/extendedArticleFragment"
+        android:name="com.example.solinews.ui.ExtendedArticleFragment"
+        android:label="fragment_extended_article"
+        tools:layout="@layout/fragment_extended_article" >
+        <argument
+            android:name="extendedTitle"
+            app:argType="string"
+            android:defaultValue="title not found" />
+        <argument
+            android:name="content"
+            app:argType="string"
+            android:defaultValue="Invalid content" />
+    </fragment>
 </navigation>

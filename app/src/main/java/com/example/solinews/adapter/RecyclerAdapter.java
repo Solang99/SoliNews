@@ -1,13 +1,16 @@
-package com.example.solinews;
+package com.example.solinews.adapter;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.solinews.R;
+import com.example.solinews.ui.news.NewsFragmentDirections;
 
 import java.util.List;
 
@@ -33,14 +36,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         // Inflate the custom layout
         View view = inflater.inflate(R.layout.news_item, parent, false);
 
-        //Open expanded fragment on touch
-        view.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                Log.d("ciao", "onClick: ");
-                return true;
-            }
-        });
 
         // Return a new holder instance
         ViewHolder viewHolder = new ViewHolder(view);
@@ -58,6 +53,16 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         TextView titleView = holder.title;
         titleView.setText(title);
         TextView subTitleView = holder.subTitle;
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NewsFragmentDirections.ActionNavNewsToExtendedArticleFragment action = NewsFragmentDirections.actionNavNewsToExtendedArticleFragment();
+                action.setExtendedTitle(title);
+                action.setContent(subTitle);
+                Navigation.findNavController(v).navigate(action);
+
+            }
+        });
         subTitleView.setText(subTitle);
     }
 
