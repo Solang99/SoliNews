@@ -10,7 +10,7 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.solinews.R;
-import com.example.solinews.ui.favorites.DialogFragment;
+import com.example.solinews.ui.favorites.AddFavoritesDialog;
 import com.example.solinews.ui.news.NewsFragmentDirections;
 
 import java.util.List;
@@ -58,7 +58,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                DialogFragment msg = new DialogFragment(v.getContext());
+                AddFavoritesDialog msg = new AddFavoritesDialog(v.getContext());
                 msg.alertbox();
                 return false;
             }
