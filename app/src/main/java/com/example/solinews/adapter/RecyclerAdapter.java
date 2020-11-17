@@ -10,6 +10,7 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.solinews.R;
+import com.example.solinews.ui.favorites.DialogFragment;
 import com.example.solinews.ui.news.NewsFragmentDirections;
 
 import java.util.List;
@@ -53,6 +54,16 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         TextView titleView = holder.title;
         titleView.setText(title);
         TextView subTitleView = holder.subTitle;
+
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                DialogFragment msg = new DialogFragment(v.getContext());
+                msg.alertbox();
+                return false;
+            }
+        });
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
