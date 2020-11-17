@@ -59,7 +59,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             @Override
             public boolean onLongClick(View v) {
                 AddFavoritesDialog msg = new AddFavoritesDialog(v.getContext());
-                msg.alertbox();
                 return false;
             }
         });
